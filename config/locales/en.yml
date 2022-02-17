@@ -1,0 +1,20 @@
+en:
+  label_redmine_email_customizer: Redmine Email Styling
+  label_email_content: Content
+  label_email_design: Design 
+  label_email_preview: Preview
+  label_colors: Colors
+  label_body_bg_color: Background color
+  label_primary_color: Primary color
+  label_secondary_color: Secondary color
+  label_title_color: Title color
+  label_text_primary_color: Text - primary color
+  label_text_secondary_color: Text - secondary color
+  label_content: label 
+  label_email_title: Email title
+  label_email_title_primary_color: Email title in primary color?
+  label_form_of_address: Form of address
+  text_hello: Hello
+  label_complimentary_close: Complimentary close
+  label_company_data: Company data
+  label_footer_text: Footer text

@@ -1,0 +1,234 @@
+<% 
+# frozen_string_literal: true
+
+# This file is part of the Plugin xmera Service.
+#
+# Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
+#
+# The main part of the HTML template below is taken from 
+# https://github.com/InterNations/antwort and adjusted to the needs of xmera.
+#
+# Copyright (c) 2012-2013 InterNations GmbH
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of 
+# this software and associated documentation files (the "Software"), to deal in the 
+# Software without restriction, including without limitation the rights to use, copy, 
+# modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+# and to permit persons to whom the Software is furnished to do so, subject to the 
+# following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all 
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR 
+# IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+#
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+ xmlns:v="urn:schemas-microsoft-com:vml"
+ xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <!--[if gte mso 9]><xml>
+   <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+   </o:OfficeDocumentSettings>
+  </xml><![endif]-->
+  <!-- fix outlook zooming on 120 DPI windows devices -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- So that mobile will display zoomed in -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- enable media queries for windows phone 8 -->
+  <meta name="format-detection" content="date=no"> <!-- disable auto date linking in iOS 7-9 -->
+  <meta name="format-detection" content="telephone=no"> <!-- disable auto telephone linking in iOS 7-9 -->
+  <title><%= Setting.app_title %></title>
+  
+  <style type="text/css">
+    h1 { font-size:14px; }
+    .title h2 { color: <%= EmailCustomizer[:text_primary_color] %> !important }
+    body {
+      margin: 0;
+      padding: 0;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    table {
+      border-spacing: 0;
+    }
+
+    table td {
+      border-collapse: collapse;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div {
+      line-height: 100%;
+    }
+
+    .ReadMsgBody {
+      width: 100%;
+      background-color: <%= EmailCustomizer[:body_bg_color] %>;
+    }
+
+    table {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    .yshortcuts a {
+      border-bottom: none !important;
+    }
+
+    @media screen and (max-width: 599px) {
+      .force-row,
+      .container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+    @media screen and (max-width: 400px) {
+      .container-padding {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+      }
+    }
+    .ios-footer a {
+      color: #aaaaaa !important;
+      text-decoration: underline;
+    }
+    a[href^="x-apple-data-detectors:"],
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+    a, a:link, a:visited {color: <%= EmailCustomizer[:primary_color] %>}
+    a:hover, a:active {color: <%= EmailCustomizer[:secondary_color] %>}
+    a.secondary-link { color: <%= EmailCustomizer[:secondary_color] %>}
+    fieldset.attachments {border-width: 1px 0 0 0;}
+    blockquote { font-style: italic; border-left: 3px solid #e0e0e0; padding-left: 0.6em; margin-left: 0;}
+    blockquote blockquote { margin-left: 0;}
+    pre, code {font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace;}
+    pre {
+      margin: 1em 1em 1em 1.6em;
+      padding: 8px;
+      background-color: #fafafa;
+      border: 1px solid #e2e2e2;
+      border-radius: 3px;
+      width:auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    ul.details {color:#959595; margin-bottom: 1.5em;}
+    .badge {
+      position:relative;
+      font-weight:bold;
+      font-size: 10px;
+      bottom: 2px;
+      padding: 1px 3px;
+      margin-right: 2px;
+      margin-left: 5px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .badge-status-open {
+      color: #000000;
+      border: 1px solid #000000
+    }
+    .badge-status-closed {
+      color: #1D781D;
+      border: 1px solid #1D781D;
+    }
+    .footer-text p {
+      color:<%= EmailCustomizer[:text_secondary_color] %>;
+    }
+    .footer-text p a {
+      color:<%= EmailCustomizer[:secondary_color] %>;
+    }
+  </style>
+</head>
+
+<body style="margin:0; padding:0;" bgcolor=<%= EmailCustomizer[:body_bg_color] %> leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<!-- 100% background wrapper (grey background) -->
+<table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor=<%= EmailCustomizer[:body_bg_color] %>>
+  <tr>
+    <td align="center" valign="top" bgcolor=<%= EmailCustomizer[:body_bg_color] %> style="background-color: <%= EmailCustomizer[:body_bg_color] %>>;">
+
+      <!-- 600px container (white background) -->
+      <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" style="width:600px;max-width:600px">
+        <tr>
+          <td class="container-padding header" align="left" style="font-family:Helvetica, Arial, sans-serif;font-size:24px;font-weight:bold;padding-bottom:12px;color:#DF4726;padding-left:24px;padding-right:24px">
+            <!-- no text -->
+          </td>
+        </tr>
+        <tr>
+          <td class="container-padding content" align="left" style="padding-left:24px;padding-right:24px;padding-bottom:12px;background-color:#ffffff">
+            <br>
+
+            <div class="title" style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:600;color:<%= EmailCustomizer[:title_color] %>>; text-align:right">
+              <%= tag.h2 do %>
+                <%= tag.span style: "#{ (EmailCustomizer[:email_title_primary_color] == '1') ? 'color:' + EmailCustomizer[:primary_color] : nil }" do %>
+                  <%= EmailCustomizer[:email_title] %>
+                <% end %>
+              <% end %>
+            </div>
+
+
+            <div class="body-text" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:<%= EmailCustomizer[:text_primary_color] %>">
+              <%= tag.h3("#{ EmailCustomizer[:form_of_address] }#{' ' + User.current.name unless User.current.is_a?(AnonymousUser)},") %>
+
+              <% if Setting.emails_header.present? -%>
+                <span class="header"><%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_header).html_safe %></span>
+              <% end -%>
+
+              <%= yield %>
+
+              <% if @issue %>
+                <%= call_hook(:view_layouts_mailer_issue_bottom, issue: @issue) %>
+              <% end %>
+
+              <%= textilizable EmailCustomizer[:complimentary_close] %>
+              <%= tag.p do %>
+                <%= tag.small do %>
+                  <%= textilizable EmailCustomizer[:company_data] %>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="container-padding footer-text" align="center" style="font-family:Helvetica, Arial, sans-serif;font-size:10px;line-height:14px;padding-left:24px;padding-right:24px">
+           <%= tag.p textilizable EmailCustomizer[:footer_text] %>
+          </td>
+        </tr>
+      </table>
+      <!--/600px container -->
+    </td>
+  </tr>
+</table>
+<!--/100% background wrapper-->
+</body>
+</html>

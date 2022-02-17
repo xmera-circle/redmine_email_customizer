@@ -1,0 +1,19 @@
+de:
+  label_redmine_email_customizer: Redmine E-Mail Styling
+  label_email_content: Inhalt
+  label_email_design: Design 
+  label_email_preview: Vorschau
+  label_colors: Farben
+  label_body_bg_color: Hintergrundfarbe
+  label_primary_color: Primärfarbe
+  label_secondary_color: Sekundärfarbe
+  label_title_color: Titelfarbe
+  label_text_primary_color: Text - Primärfarbe
+  label_text_secondary_color: Text - Sekundärfarbe
+  label_content: Inhalt
+  label_email_title: E-Mail Title
+  label_email_title_primary_color: E-Mail Title in Primärfarbe?
+  label_form_of_address: Anrede
+  label_complimentary_close: Grußformel
+  label_company_data: Unternehmensdaten
+  label_footer_text: Abschlusstext

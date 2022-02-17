@@ -1,0 +1,58 @@
+<%
+# frozen_string_literal: true
+
+# This file is part of the Plugin Redmine Email Styling.
+#
+# Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
+#
+# This plugin program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+%>
+  
+  <%= tag. p do %>
+    <%= tag.label l(:label_body_bg_color) %>
+      <%= color_field_tag 'settings[body_bg_color]',  
+                          EmailCustomizer[:body_bg_color] %>
+  <% end %>
+
+  <%= tag. p do %>
+    <%= tag.label l(:label_primary_color) %>
+      <%= color_field_tag 'settings[primary_color]',  
+                          EmailCustomizer[:primary_color] %>
+  <% end %>
+
+  <%= tag. p do %>
+    <%= tag.label l(:label_secondary_color) %>
+      <%= color_field_tag 'settings[secondary_color]',  
+                          EmailCustomizer[:secondary_color] %>
+  <% end %>
+
+  <%= tag. p do %>
+    <%= tag.label l(:label_title_color) %>
+      <%= color_field_tag 'settings[title_color]',  
+                          EmailCustomizer[:title_color] %>
+  <% end %>
+
+  <%= tag. p do %>
+    <%= tag.label l(:label_text_primary_color) %>
+      <%= color_field_tag 'settings[text_primary_color]',  
+                          EmailCustomizer[:text_primary_color] %>
+
+  <% end %>
+
+  <%= tag. p do %>
+    <%= tag.label l(:label_text_secondary_color) %>
+      <%= color_field_tag 'settings[text_secondary_color]',  
+                          EmailCustomizer[:text_secondary_color] %>
+  <% end %>
