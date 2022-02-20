@@ -29,6 +29,7 @@
 #
 #
 %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
  xmlns:v="urn:schemas-microsoft-com:vml"
@@ -49,27 +50,23 @@
   <title><%= Setting.app_title %></title>
   
   <style type="text/css">
-    h1 { font-size:14px; }
-    .title h2 { color: <%= EmailCustomizer[:text_primary_color] %> !important }
-    body {
+    #mailer-template h1 { font-size:14px; }
+    #mailer-template .branding h2 { color: <%= email_presenter[:text_primary_color] %> !important }
+    body#mailer-template {
       margin: 0;
       padding: 0;
       -ms-text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
     }
-
-    table {
+    #mailer-template table {
       border-spacing: 0;
     }
-
-    table td {
+    #mailer-template table td {
       border-collapse: collapse;
     }
-
     .ExternalClass {
       width: 100%;
     }
-
     .ExternalClass,
     .ExternalClass p,
     .ExternalClass span,
@@ -78,44 +75,39 @@
     .ExternalClass div {
       line-height: 100%;
     }
-
     .ReadMsgBody {
       width: 100%;
-      background-color: <%= EmailCustomizer[:body_bg_color] %>;
+      background-color: <%= email_presenter[:body_bg_color] %>;
     }
-
-    table {
+    #mailer-template table {
       mso-table-lspace: 0pt;
       mso-table-rspace: 0pt;
     }
-
-    img {
+    #mailer-template img {
       -ms-interpolation-mode: bicubic;
     }
-
-    .yshortcuts a {
+    #mailer-template .yshortcuts a {
       border-bottom: none !important;
     }
-
     @media screen and (max-width: 599px) {
-      .force-row,
-      .container {
+      #mailer-template .force-row,
+      #mailer-template .container {
         width: 100% !important;
         max-width: 100% !important;
       }
     }
     @media screen and (max-width: 400px) {
-      .container-padding {
+      #mailer-template .container-padding {
         padding-left: 12px !important;
         padding-right: 12px !important;
       }
     }
-    .ios-footer a {
+    #mailer-template .ios-footer a {
       color: #aaaaaa !important;
       text-decoration: underline;
     }
-    a[href^="x-apple-data-detectors:"],
-    a[x-apple-data-detectors] {
+    #mailer-template a[href^="x-apple-data-detectors:"],
+    #mailer-template a[x-apple-data-detectors] {
       color: inherit !important;
       text-decoration: none !important;
       font-size: inherit !important;
@@ -123,14 +115,14 @@
       font-weight: inherit !important;
       line-height: inherit !important;
     }
-    a, a:link, a:visited {color: <%= EmailCustomizer[:primary_color] %>}
-    a:hover, a:active {color: <%= EmailCustomizer[:secondary_color] %>}
-    a.secondary-link { color: <%= EmailCustomizer[:secondary_color] %>}
-    fieldset.attachments {border-width: 1px 0 0 0;}
-    blockquote { font-style: italic; border-left: 3px solid #e0e0e0; padding-left: 0.6em; margin-left: 0;}
-    blockquote blockquote { margin-left: 0;}
-    pre, code {font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace;}
-    pre {
+    #mailer-template a, #mailer-template a:link, #mailer-template a:visited {color: <%= email_presenter[:primary_color] %>}
+    #mailer-template a:hover, #mailer-template a:active {color: <%= email_presenter[:secondary_color] %>}
+    #mailer-template a.secondary-link { color: <%= email_presenter[:secondary_color] %>}
+    #mailer-template fieldset.attachments { border-width: 1px 0 0 0; }
+    #mailer-template blockquote { font-style: italic; border-left: 3px solid #e0e0e0; padding-left: 0.6em; margin-left: 0;}
+    #mailer-template blockquote blockquote { margin-left: 0;}
+    #mailer-template pre, #mailer-template code {font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace;}
+    #mailer-template pre {
       margin: 1em 1em 1em 1.6em;
       padding: 8px;
       background-color: #fafafa;
@@ -140,8 +132,8 @@
       overflow-x: auto;
       overflow-y: hidden;
     }
-    ul.details {color:#959595; margin-bottom: 1.5em;}
-    .badge {
+    #mailer-template ul.details { color:#959595; margin-bottom: 1.5em; }
+    #mailer-template .badge {
       position:relative;
       font-weight:bold;
       font-size: 10px;
@@ -153,75 +145,59 @@
       text-transform: uppercase;
       text-decoration: none;
     }
-    .badge-status-open {
+    #mailer-template .badge-status-open {
       color: #000000;
       border: 1px solid #000000
     }
-    .badge-status-closed {
+    #mailer-template .badge-status-closed {
       color: #1D781D;
       border: 1px solid #1D781D;
     }
-    .footer-text p {
-      color:<%= EmailCustomizer[:text_secondary_color] %>;
+    #mailer-template .footer-text p {
+      color:<%= email_presenter[:text_secondary_color] %>;
+      line-height: inherit;
     }
-    .footer-text p a {
-      color:<%= EmailCustomizer[:secondary_color] %>;
+    #mailer-template .footer-text p a {
+      color:<%= email_presenter[:secondary_color] %>;
     }
   </style>
 </head>
 
-<body style="margin:0; padding:0;" bgcolor=<%= EmailCustomizer[:body_bg_color] %> leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body style="margin:0; padding:0;" bgcolor=<%= email_presenter[:body_bg_color] %> leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
-<!-- 100% background wrapper (grey background) -->
-<table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor=<%= EmailCustomizer[:body_bg_color] %>>
+<!-- 100% background wrapper -->
+<table id='mailer-template' border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor=<%= email_presenter[:body_bg_color] %>>
   <tr>
-    <td align="center" valign="top" bgcolor=<%= EmailCustomizer[:body_bg_color] %> style="background-color: <%= EmailCustomizer[:body_bg_color] %>>;">
+    <td align="center" valign="top" bgcolor=<%= email_presenter[:body_bg_color] %> style="background-color: <%= email_presenter[:body_bg_color] %>>;">
 
-      <!-- 600px container (white background) -->
+      <!-- 600px container -->
       <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" style="width:600px;max-width:600px">
         <tr>
-          <td class="container-padding header" align="left" style="font-family:Helvetica, Arial, sans-serif;font-size:24px;font-weight:bold;padding-bottom:12px;color:#DF4726;padding-left:24px;padding-right:24px">
-            <!-- no text -->
+          <td class="container-padding header-text" align="left" style="font-family:Helvetica, Arial, sans-serif;padding-top:12px;padding-bottom:12px;padding-left:24px;padding-right:24px">
+            <%= call_hook(:view_layouts_mailer_header, issue: @issue) %>
           </td>
         </tr>
         <tr>
           <td class="container-padding content" align="left" style="padding-left:24px;padding-right:24px;padding-bottom:12px;background-color:#ffffff">
             <br>
 
-            <div class="title" style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:600;color:<%= EmailCustomizer[:title_color] %>>; text-align:right">
-              <%= tag.h2 do %>
-                <%= tag.span style: "#{ (EmailCustomizer[:email_title_primary_color] == '1') ? 'color:' + EmailCustomizer[:primary_color] : nil }" do %>
-                  <%= EmailCustomizer[:email_title] %>
-                <% end %>
-              <% end %>
+            <div class="branding" style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:600;color:<%= email_presenter[:title_color] %>>; text-align:right">
+              <%= email_presenter.branding %>
             </div>
 
-
-            <div class="body-text" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:<%= EmailCustomizer[:text_primary_color] %>">
-              <%= tag.h3("#{ EmailCustomizer[:form_of_address] }#{' ' + User.current.name unless User.current.is_a?(AnonymousUser)},") %>
-
-              <% if Setting.emails_header.present? -%>
-                <span class="header"><%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_header).html_safe %></span>
-              <% end -%>
-
+            <div class="body-text" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:<%= email_presenter[:text_primary_color] %>">
+              <%= email_presenter.greeting %>
+              <%= email_presenter.default_header %>
               <%= yield %>
-
-              <% if @issue %>
-                <%= call_hook(:view_layouts_mailer_issue_bottom, issue: @issue) %>
-              <% end %>
-
-              <%= textilizable EmailCustomizer[:complimentary_close] %>
-              <%= tag.p do %>
-                <%= tag.small do %>
-                  <%= textilizable EmailCustomizer[:company_data] %>
-                <% end %>
-              <% end %>
+              <%= email_presenter.issue_footer %>
+              <%= email_presenter.complimentary_close %>
+              <%= email_presenter.company_data %>
             </div>
           </td>
         </tr>
         <tr>
           <td class="container-padding footer-text" align="center" style="font-family:Helvetica, Arial, sans-serif;font-size:10px;line-height:14px;padding-left:24px;padding-right:24px">
-           <%= tag.p textilizable EmailCustomizer[:footer_text] %>
+            <%= email_presenter.footer %>
           </td>
         </tr>
       </table>

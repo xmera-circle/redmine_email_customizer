@@ -1,7 +1,7 @@
 <%
 # frozen_string_literal: true
 
-# This file is part of the Plugin Redmine Email Styling.
+# This file is part of the Plugin Redmine Email Customizer.
 #
 # Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
@@ -41,6 +41,14 @@
 <% end %>
 
 <%= tag. p do %>
+  <%= tag.label l(:label_use_default_header) %>
+    <%= hidden_field_tag 'settings[use_default_header]', '0' %>
+    <%= check_box_tag 'settings[use_default_header]',
+                      '1', 
+                       EmailCustomizer.checked?(:use_default_header) %>
+<% end %>
+
+<%= tag. p do %>
   <%= tag.label l(:label_complimentary_close) %>
     <%= text_area_tag 'settings[complimentary_close]',  
                         EmailCustomizer[:complimentary_close],
@@ -65,4 +73,12 @@
                         class: 'wiki-edit',
                         rows: 10, cols: 5 %>
   <%= wikitoolbar_for('settings_footer_text') %>
+<% end %>
+
+<%= tag. p do %>
+  <%= tag.label l(:label_use_default_footer) %>
+    <%= hidden_field_tag 'settings[use_default_footer]', '0' %>
+    <%= check_box_tag 'settings[use_default_footer]',
+                      '1', 
+                       EmailCustomizer.checked?(:use_default_footer) %>
 <% end %>
