@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is part of the Plugin Redmine Email Styling.
+# This file is part of the Plugin Redmine Email Customizer.
 #
 # Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
