@@ -1,5 +1,5 @@
 en:
-  label_redmine_email_customizer: Redmine Email Styling
+  label_redmine_email_customizer: Redmine Email Customizer
   label_email_content: Content
   label_email_design: Design 
   label_email_preview: Preview
@@ -15,6 +15,8 @@ en:
   label_email_title_primary_color: Email title in primary color?
   label_form_of_address: Form of address
   text_hello: Hello
+  label_use_default_header: Use default header?
   label_complimentary_close: Complimentary close
   label_company_data: Company data
   label_footer_text: Footer text
+  label_use_default_footer: Use default footer?
