@@ -26,6 +26,7 @@ require 'forwardable'
 class EmailPresenter
   extend Forwardable
   include ApplicationHelper
+  include ActionView::Helpers::SanitizeHelper
 
   def_delegator :view, :tag
   def_delegators Setting, :emails_header, :emails_footer
