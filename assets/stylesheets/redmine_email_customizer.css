@@ -2,7 +2,7 @@
     border: 3px solid #ffffff;
     border-radius: 3px;
   }
-  .tabular.settings p {
+  .tabular.settings:not(:footer-text) p {
     margin-bottom: 30px;
   }
   .tabular.settings .email-preview p {

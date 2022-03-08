@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is part of the Plugin Redmine Email Customizer.
+# This file is part of the Plugin Redmine Custom Email Styling.
 #
 # Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
@@ -18,19 +18,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-require_dependency 'redmine_email_customizer'
-
-Redmine::Plugin.register :redmine_email_customizer do
-  name 'Redmine Email Customizer'
-  author 'Liane Hampe'
-  description 'Customize the default Redmine email template'
-  version '0.1.0'
-  author_url 'https://circle.xmera.de/projects/redmine-email-customizer'
-
-  requires_redmine version_or_higher: '4.2.0'
-
-  settings  partial: RedmineEmailCustomizer.partial,
-            default: RedmineEmailCustomizer.defaults
+##
+# Provides an EmailPresenter instance to be used in views/layout/mailer.html.erb.
+#
+# @see app/presenters/email_presenter.rb for available methods.
+#
+module EmailHelper
+  def email_presenter
+    EmailPresenter.new(self, issue: @issue, customizer: EmailCustomizer)
+  end
 end
-
-RedmineEmailCustomizer.setup

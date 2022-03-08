@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This file is part of the Plugin Redmine Email Styling.
+# This file is part of the Plugin Redmine Email Customizer.
 #
 # Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
 #
@@ -18,7 +18,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-require 'redmine_email_customizer/helpers/email_customizer_helper'
 require 'redmine_email_customizer/hooks/views'
 
 ##
@@ -27,11 +26,8 @@ require 'redmine_email_customizer/hooks/views'
 module RedmineEmailCustomizer
   class << self
     def setup
-      Rails.configuration.to_prepare do
-        unless Redmine.included_modules.include?(RedmineEmailCustomizer::Helpers)
-          SettingsController.prepend(RedmineEmailCustomizer::Helpers)
-        end
-      end
+      add_helpers
+      autoload_presenters
     end
 
     def partial
@@ -43,6 +39,20 @@ module RedmineEmailCustomizer
     end
 
     private
+
+    def add_helpers
+      Rails.configuration.to_prepare do
+        SettingsController.helper :email, :email_customizer
+        Mailer.helper :email
+      end
+    end
+
+    def autoload_presenters
+      plugin = Redmine::Plugin.find(:redmine_email_customizer)
+      Rails.application.configure do
+        config.autoload_paths << "#{plugin.directory}/app/presenters"
+      end
+    end
 
     def body_bg_color
       { body_bg_color: '#f0f0f0' }
@@ -80,6 +90,10 @@ module RedmineEmailCustomizer
       { form_of_address: '' }
     end
 
+    def use_default_header
+      { use_default_header: '1' }
+    end
+
     def complimentary_close
       { complimentary_close: '' }
     end
@@ -92,11 +106,16 @@ module RedmineEmailCustomizer
       { footer_text: '' }
     end
 
+    def use_default_footer
+      { use_default_footer: '1' }
+    end
+
     def attributes
       [body_bg_color, primary_color, secondary_color,
        title_color, text_primary_color, text_secondary_color,
-       form_of_address, complimentary_close, company_data,
-       footer_text, email_title, email_title_primary_color]
+       email_title_primary_color, form_of_address, use_default_header,
+       complimentary_close, company_data, footer_text, email_title,
+       use_default_footer]
     end
   end
 end
