@@ -1,6 +1,6 @@
 # Redmine Email Customizer
 
-Customize the default Redmine email template
+Customize the default Redmine email HTML template
 
 ![Redmine Plugin Version](https://img.shields.io/badge/Redmine_Plugin-v0.1.0-red) ![Redmine Version](https://img.shields.io/badge/Redmine-v4.x.x-blue) ![Language Support](https://img.shields.io/badge/Languages-en,_de-green) ![Version Stage](https://img.shields.io/badge/Stage-release-important)
 
