@@ -44,8 +44,9 @@ module RedmineEmailCustomizer
       Setting.plugin_redmine_email_customizer = { email_title: email_title }
       get '/settings/plugin/redmine_email_customizer?tab=preview'
       assert_response :success
-      assert_select '.title', text: EmailCustomizer[:email_title]
-      assert_select 'h2 span[style=?]', 'color:#9e1030'
+      assert_select '.branding'
+      assert_select 'h2 span', text: EmailCustomizer[:email_title]
+      assert_select 'h2 span[style=?]', 'color: #9e1030'
     end
   end
 end
