@@ -23,25 +23,24 @@ require 'forwardable'
 ##
 # Prepares all required email components to be ready for rendering.
 #
-class EmailPresenter
+class EmailPresenter < AdvancedPluginHelper::BasePresenter
   extend Forwardable
   include ApplicationHelper
-  include ActionView::Helpers::SanitizeHelper
 
-  def_delegator :view, :tag
+  presents :issue
+
   def_delegators Setting, :emails_header, :emails_footer
   def_delegators :customizer, :[], :checked?
 
-  def initialize(view, issue:, customizer:)
-    @view = view
-    @issue = issue
+  def initialize(object, view)
     @current_user = User.current
-    @customizer = customizer
+    @customizer = EmailCustomizer
+    super
   end
 
   def branding
     tag.h2 do
-      tag.span branding_style do
+      tag.span style: branding_style do
         self[:email_title]
       end
     end
@@ -75,6 +74,7 @@ class EmailPresenter
     end
   end
 
+  # rubocop:disable Rails/OutputSafety
   def footer
     tag.p do
       text = +''
@@ -83,13 +83,14 @@ class EmailPresenter
       text.html_safe
     end
   end
+  # rubocop:enable Rails/OutputSafety
 
   private
 
-  attr_reader :view, :issue, :current_user, :customizer
+  attr_reader :current_user, :customizer
 
   def branding_style
-    { style: checked?(:email_title_primary_color) ? "color: #{self[:primary_color]}" : "color: #{self[:title_color]}" }
+    checked?(:email_title_primary_color) ? "color: #{self[:primary_color]}" : "color: #{self[:title_color]}"
   end
 
   def footer_text

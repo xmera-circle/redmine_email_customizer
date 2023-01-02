@@ -51,7 +51,7 @@
   
   <style type="text/css">
     #mailer-template h1 { font-size:14px; }
-    #mailer-template .branding h2 { color: <%= email_presenter[:text_primary_color] %> !important }
+    #mailer-template .branding h2 { color: <%= show(@issue, EmailPresenter)[:text_primary_color] %> !important }
     body#mailer-template {
       margin: 0;
       padding: 0;
@@ -77,7 +77,7 @@
     }
     .ReadMsgBody {
       width: 100%;
-      background-color: <%= email_presenter[:body_bg_color] %>;
+      background-color: <%= show(@issue, EmailPresenter)[:body_bg_color] %>;
     }
     #mailer-template table {
       mso-table-lspace: 0pt;
@@ -115,9 +115,9 @@
       font-weight: inherit !important;
       line-height: inherit !important;
     }
-    #mailer-template a, #mailer-template a:link, #mailer-template a:visited {color: <%= email_presenter[:primary_color] %>}
-    #mailer-template a:hover, #mailer-template a:active {color: <%= email_presenter[:secondary_color] %>}
-    #mailer-template a.secondary-link { color: <%= email_presenter[:secondary_color] %>}
+    #mailer-template a, #mailer-template a:link, #mailer-template a:visited {color: <%= show(@issue, EmailPresenter)[:primary_color] %>}
+    #mailer-template a:hover, #mailer-template a:active {color: <%= show(@issue, EmailPresenter)[:secondary_color] %>}
+    #mailer-template a.secondary-link { color: <%= show(@issue, EmailPresenter)[:secondary_color] %>}
     #mailer-template fieldset.attachments { border-width: 1px 0 0 0; }
     #mailer-template blockquote { font-style: italic; border-left: 3px solid #e0e0e0; padding-left: 0.6em; margin-left: 0;}
     #mailer-template blockquote blockquote { margin-left: 0;}
@@ -154,21 +154,21 @@
       border: 1px solid #1D781D;
     }
     #mailer-template .footer-text p {
-      color:<%= email_presenter[:text_secondary_color] %>;
+      color:<%= show(@issue, EmailPresenter)[:text_secondary_color] %>;
       line-height: inherit;
     }
     #mailer-template .footer-text p a {
-      color:<%= email_presenter[:secondary_color] %>;
+      color:<%= show(@issue, EmailPresenter)[:secondary_color] %>;
     }
   </style>
 </head>
 
-<body style="margin:0; padding:0;" bgcolor=<%= email_presenter[:body_bg_color] %> leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body style="margin:0; padding:0;" bgcolor=<%= show(@issue, EmailPresenter)[:body_bg_color] %> leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
 <!-- 100% background wrapper -->
-<table id='mailer-template' border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor=<%= email_presenter[:body_bg_color] %>>
+<table id='mailer-template' border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor=<%= show(@issue, EmailPresenter)[:body_bg_color] %>>
   <tr>
-    <td align="center" valign="top" bgcolor=<%= email_presenter[:body_bg_color] %> style="background-color: <%= email_presenter[:body_bg_color] %>>;">
+    <td align="center" valign="top" bgcolor=<%= show(@issue, EmailPresenter)[:body_bg_color] %> style="background-color: <%= show(@issue, EmailPresenter)[:body_bg_color] %>>;">
 
       <!-- 600px container -->
       <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" style="width:600px;max-width:600px">
@@ -181,23 +181,23 @@
           <td class="container-padding content" align="left" style="padding-left:24px;padding-right:24px;padding-bottom:12px;background-color:#ffffff">
             <br>
 
-            <div class="branding" style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:600;color:<%= email_presenter[:title_color] %>>; text-align:right">
-              <%= email_presenter.branding %>
+            <div class="branding" style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:600;color:<%= show(@issue, EmailPresenter)[:title_color] %>>; text-align:right">
+              <%= show(@issue, EmailPresenter).branding %>
             </div>
 
-            <div class="body-text" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:<%= email_presenter[:text_primary_color] %>">
-              <%= email_presenter.greeting %>
-              <%= email_presenter.default_header %>
+            <div class="body-text" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;text-align:left;color:<%= show(@issue, EmailPresenter)[:text_primary_color] %>">
+              <%= show(@issue, EmailPresenter).greeting %>
+              <%= show(@issue, EmailPresenter).default_header %>
               <%= yield %>
-              <%= email_presenter.issue_footer %>
-              <%= email_presenter.complimentary_close %>
-              <%= email_presenter.company_data %>
+              <%= show(@issue, EmailPresenter).issue_footer %>
+              <%= show(@issue, EmailPresenter).complimentary_close %>
+              <%= show(@issue, EmailPresenter).company_data %>
             </div>
           </td>
         </tr>
         <tr>
           <td class="container-padding footer-text" align="center" style="font-family:Helvetica, Arial, sans-serif;font-size:10px;line-height:14px;padding-left:24px;padding-right:24px">
-            <%= email_presenter.footer %>
+            <%= show(@issue, EmailPresenter).footer %>
           </td>
         </tr>
       </table>

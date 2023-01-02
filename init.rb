@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-require_dependency 'redmine_email_customizer'
+require File.expand_path('lib/redmine_email_customizer', __dir__)
 
 Redmine::Plugin.register :redmine_email_customizer do
   name 'Redmine Email Customizer'
