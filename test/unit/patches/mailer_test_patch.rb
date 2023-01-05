@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Email Customizer.
 #
-# Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2022-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This plugin program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -25,7 +25,11 @@ class MailerTest
     Mailer.reminders(days: days)
     assert_equal 1, ActionMailer::Base.deliveries.size
     mail = last_email
-    assert mail.bcc.include?('dlopper@somenet.foo')
+    if Rails.version > '6'
+      assert mail.to.include?('dlopper@somenet.foo')
+    else
+      assert mail.bcc.include?('dlopper@somenet.foo')
+    end
     assert_mail_body_match 'Bug #3: Error 281 when updating a recipe (5 days late)', mail
     assert_mail_body_match 'View all issues (2 open)', mail
     url =

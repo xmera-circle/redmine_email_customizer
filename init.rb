@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Email Customizer.
 #
-# Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2022-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This plugin program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -22,12 +22,13 @@ require File.expand_path('lib/redmine_email_customizer', __dir__)
 
 Redmine::Plugin.register :redmine_email_customizer do
   name 'Redmine Email Customizer'
-  author 'Liane Hampe'
+  author 'Liane Hampe, xmera Solutions GmbH'
   description 'Customize the default Redmine email template'
-  version '0.1.1'
+  version '0.1.2'
   author_url 'https://circle.xmera.de/projects/redmine-email-customizer'
 
   requires_redmine version_or_higher: '4.2.0'
+  requires_redmine_plugin :advanced_plugin_helper, version_or_higher: '0.2.0'
 
   settings  partial: RedmineEmailCustomizer.partial,
             default: RedmineEmailCustomizer.defaults
