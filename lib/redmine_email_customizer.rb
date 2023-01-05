@@ -2,7 +2,7 @@
 
 # This file is part of the Plugin Redmine Email Customizer.
 #
-# Copyright (C) 2022 Liane Hampe <liaham@xmera.de>, xmera.
+# Copyright (C) 2022-2023 Liane Hampe <liaham@xmera.de>, xmera Solutions GmbH.
 #
 # This plugin program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-require 'redmine_email_customizer/hooks/views'
+require_relative 'redmine_email_customizer/hooks/views'
 
 ##
 # Plugin setup
@@ -27,7 +27,7 @@ module RedmineEmailCustomizer
   class << self
     def setup
       add_helpers
-      autoload_presenters
+      AdvancedPluginHelper::Presenter.register('EmailPresenter', 'Issue')
     end
 
     def partial
@@ -41,17 +41,8 @@ module RedmineEmailCustomizer
     private
 
     def add_helpers
-      Rails.configuration.to_prepare do
-        SettingsController.helper :email, :email_customizer
-        Mailer.helper :email
-      end
-    end
-
-    def autoload_presenters
-      plugin = Redmine::Plugin.find(:redmine_email_customizer)
-      Rails.application.configure do
-        config.autoload_paths << "#{plugin.directory}/app/presenters"
-      end
+      settings_controller = { klass: SettingsController, patch: EmailCustomizerHelper, strategy: :helper }
+      AdvancedPluginHelper::Patch.register(settings_controller)
     end
 
     def body_bg_color
