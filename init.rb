@@ -24,7 +24,7 @@ Redmine::Plugin.register :redmine_email_customizer do
   name 'Redmine Email Customizer'
   author 'Liane Hampe, xmera Solutions GmbH'
   description 'Customize the default Redmine email template'
-  version '0.1.2'
+  version '0.1.3'
   author_url 'https://circle.xmera.de/projects/redmine-email-customizer'
 
   requires_redmine version_or_higher: '4.2.0'
