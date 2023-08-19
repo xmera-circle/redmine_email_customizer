@@ -46,7 +46,7 @@ module RedmineEmailCustomizer
       assert_response :success
       assert_select '.branding'
       assert_select 'h2 span', text: EmailCustomizer[:email_title]
-      assert_select 'h2 span[style=?]', 'color: #9e1030'
+      assert_select 'h2 span[style=?]', 'color: #f55e2c'
     end
   end
 end
