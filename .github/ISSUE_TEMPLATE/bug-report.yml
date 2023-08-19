@@ -58,7 +58,7 @@ body:
     attributes:
       label: In what environment are you running the plugin?
       description: Please copy and paste your environment information as displayed in Administration » Information or run `bin/about` in the root dir of your Redmine instance. 
-      placeholder: Tell us step by step what we need to do!
+      placeholder: Paste your environment information here
       value:
     validations:
       required: true
