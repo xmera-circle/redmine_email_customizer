@@ -46,11 +46,11 @@ module RedmineEmailCustomizer
     end
 
     def body_bg_color
-      { body_bg_color: '#f0f0f0' }
+      { body_bg_color: '#ffffff' }
     end
 
     def primary_color
-      { primary_color: '#9e1030' }
+      { primary_color: '#f55e2c' }
     end
 
     def secondary_color
@@ -58,7 +58,7 @@ module RedmineEmailCustomizer
     end
 
     def title_color
-      { title_color: '#000000' }
+      { title_color: '#1a1a1a' }
     end
 
     def text_primary_color
